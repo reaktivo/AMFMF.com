@@ -1,0 +1,80 @@
+@import "lib/normalize.css"
+@import "lib/main.css"
+@import "animations.css"
+
+
+mainColor = #2d78bc
+mainMargin = 10px
+bannerSize =  (940px / 2) - (mainMargin * 2)
+
+a, a:hover, a:visited
+  color mainColor
+
+body
+  background: url(../img/cc.jpg) no-repeat center center fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+
+#teaser
+  margin: 0 auto
+  overflow: hidden
+  width: 862px
+  height: 0
+  padding-top: 862px
+  background: url(../img/teaser.png) no-repeat center center
+
+#bands
+  width 312px
+  margin 50px auto 0
+  
+  .band
+    position relative
+    padding 0 10px
+    color #fff
+    background #111
+    font-family Oswald, Impact, sans-serif
+    margin 20px 0
+    .img
+      position absolute
+      z-index 0
+      display none
+      top 0
+      right 0
+      bottom 0
+      left 0
+      -webkit-animation slide 10s infinite ease-in-out alternate
+    h1
+      position relative
+      z-index 100
+      font-weight 400
+      margin 0
+      text-transform uppercase
+      cursor pointer
+    .info
+      position relative
+      z-index 100
+      overflow hidden
+      height 0
+      p
+        font-weight 300
+        padding-bottom 10px
+    .play
+      color #fff
+      text-decoration none
+        
+        
+#backgrounds
+  z-index -10
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  & > *
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0

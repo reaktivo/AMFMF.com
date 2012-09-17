@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  #teaser
+  #bands
+    i = 0
+    each band, bandId in bands
+      .band(id=bandId, style="color: #{colors[i++]};", data-image="/img/bands/#{bandId}.jpg")
+        h1= band.name
+        .info
+          p= band.text
+          p: a.play(href="/audio/#{bandId}.mp3") Escuchar
+  #backgrounds
+
+
+append scripts
+
+  != js('player')
+  != js('amfmf')
+    

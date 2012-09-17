@@ -1,0 +1,22 @@
+{
+  "name": "AMFMF",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "engines": {
+    "node": "0.6.x"
+  }
+  "dependencies": {
+    "express": "3.0.0rc4",
+    "jade": "*",
+    "stylus": "*",
+    "coffee-script": "~1.3.3",
+    "express-resource": "~0.2.4",
+    "js-yaml": "~1.0.2",
+    "connect-assets": "~2.3.3",
+    "underscore": "~1.3.3",
+    "express-load": "~1.1.0"
+  }
+}
