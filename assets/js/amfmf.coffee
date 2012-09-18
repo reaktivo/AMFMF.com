@@ -43,7 +43,7 @@ window.AMFMF =
     image = $('<div>').css
           
       # set background to band image
-      background: band.data('image')
+      background: "url(#{band.data('image')})"
           
       # hide image element
       opacity: 0
