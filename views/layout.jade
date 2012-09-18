@@ -8,7 +8,6 @@ html
     meta(name="viewport", content="width=device-width")
     != css('style')
     != js('vendor/modernizr-2.6.1.min')
-    include fonts
     block head
   body
     block content
@@ -16,4 +15,5 @@ html
     != js('vendor/soundmanager2')
     != js('plugins')
     != js('main')
+    include fonts
     block scripts
