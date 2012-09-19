@@ -7,34 +7,44 @@ window.Player =
   init: ->
         
     # add click events to .play elements
-    $('.play').click (e) =>
+    $('.play').click (e) =>  
         
       # stop from following link
       do e.preventDefault
+      
+      $('.playing').removeClass 'playing'
         
       # get sound element
       sound = $ e.currentTarget
-          
+      
       # set sound source
       src = sound.attr 'href'
-          
-      # toggle pause if clicked same sound
-      return do @isPlaying.togglePause if @isPlaying is @sounds[src]
-          
-      # stop currently playing sound
-      do @isPlaying?.stop
-            
+      
       # create new sound
       unless @sounds[src]
         @sounds[src] = soundManager.createSound
           id: src
           url: src
       
-      # set new isPlaying
-      @isPlaying = @sounds[src]
-            
-      # play new sound
-      do @isPlaying.play
+      # stop playing sound
+      do @isPlaying?.stop
+      
+      # check if same as playing sound
+      if @isPlaying is @sounds[src]
+        
+        # set playing sound to null
+        @isPlaying = null
+        
+      else
+      
+        # set new playing sound
+        @isPlaying = @sounds[src]
+        
+        # play new sound
+        do @isPlaying.play
+        
+        # add class to button
+        sound.addClass 'playing'
       
 
 soundManager.setup

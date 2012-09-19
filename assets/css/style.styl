@@ -61,9 +61,22 @@ body
         font-weight 300
         padding-bottom 10px
     .play
+      display inline-block
       color #fff
       text-decoration none
-        
+      line-height 23px
+      &:before
+        content " "
+        display inline-block
+        width 23px
+        height 23px
+        position relative
+        top 4px
+        margin-right 5px
+        background url(../img/play-pause.png)
+      &.playing:before
+        background-position 0 23px
+          
         
 #backgrounds
   z-index -10
