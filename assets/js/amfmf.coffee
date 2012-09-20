@@ -61,7 +61,7 @@ window.AMFMF =
   ####  The showBandImage() function
   
   # `showBandImage` remove the previous band images
-  # and adds builds a new element to append to the 
+  # and builds a new element to append to the 
   # band images container (`#backgrounds`).
   showBandImage: (src) ->
     
@@ -79,6 +79,6 @@ window.AMFMF =
 # Calling this on domready is not required
 # because all elements selected should already
 # be in place by the time the amfmf script
-# is loaded
+# is loaded.
 
 do AMFMF.init
