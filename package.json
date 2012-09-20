@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "docs": "docco -o assets/docs assets/js/*.coffee"
   },
   "engines": {
     "node": "0.8.x",
