@@ -6,8 +6,15 @@ html
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
     title= title
     meta(name="viewport", content="width=device-width")
+    meta(property="og:title", content=opengraph.title)
+    meta(property="og:type", content=opengraph.type)
+    meta(property="og:url", content=opengraph.url)
+    meta(property="og:image", content=opengraph.image)
+    meta(property="og:site_name", content=opengraph.site_name)
+    meta(property="og:description", content=opengraph.description)
     != css('style')
     != js('vendor/modernizr-2.6.1.min')
+    
     block head
   body
     block content
