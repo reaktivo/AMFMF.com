@@ -1,21 +1,39 @@
 extends ../layout
 
 block content
+  if ready
+    ul#menu
+      li.c1: a(href="/news", data-section="news") Noticias
+      li.c2: a(href="/lineup", data-section="lineup") Lineup
+      li.c3: a(href="http://bandtastic.me/amf/") Boletos
+  
   #teaser
   if ready
-    #bands
-      i = 0
-      each band, bandId in bands
-        .band(id=bandId, style="color: #{colors[i++]};")
-          h1= band.name
-          .info
-            p= band.text
-            p: a.play(href="/bands/#{bandId}.mp3") Escuchar
-    #backgrounds
+    
+    #sections
+      
+      #news
+        h1 Noticias
+        .container
+        a.more(href="http://twitter.com/infoamf") Más
+        
+      #lineup
+        i = 0
+        each band, bandId in bands
+          .band(id=bandId, style="color: #{colors[i++]};")
+            h1= band.name
+            .info
+              p= band.text
+              p: a.play(href="/bands/#{bandId}.mp3") Escuchar
+      
+      
+    #images
 
 
 append scripts
 
   != js('player')
+  != js('lineup')
+  != js('news')
   != js('amfmf')
     

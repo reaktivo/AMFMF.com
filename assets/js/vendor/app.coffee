@@ -4,4 +4,5 @@ window.App or= {}
 #= require jquery.tweet
 #= require jquery.slabtext
 #= require jquery.tweet
+#= require jquery.smooth-scroll
 #= require soundmanager2

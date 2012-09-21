@@ -11,6 +11,7 @@ a, a:hover, a:visited
   color mainColor
 
 body
+  font-family Oswald, Impact, sans-serif
   background: url(../img/cc.jpg) no-repeat center center fixed
   -webkit-background-size: cover
   -moz-background-size: cover
@@ -18,14 +19,14 @@ body
   background-size: cover
 
 #teaser
-  margin: 0 auto
+  margin: -70px auto 0
   overflow: hidden
   width: 862px
   height: 0
   padding-top: 862px
   background: url(../img/teaser.png) no-repeat center center
 
-#bands
+#lineup
   width 312px
   margin 50px auto 0
   
@@ -76,9 +77,36 @@ body
         background url(../img/play-pause.png)
       &.playing:before
         background-position 0 23px
-          
-        
-#backgrounds
+
+#menu
+  list-style none
+  width 312px
+  margin 0 auto
+  padding 0
+  
+#menu li
+  background #111
+  display inline-block
+  width 33%
+  text-align center
+
+  a
+    color #fff  
+    font-family Oswald, Impact, sans-serif
+    font-size 22px
+    text-decoration none
+    text-transform uppercase
+    line-height 50px
+  &.c1 a:hover
+    color #ed829c
+  &.c2 a:hover
+    color #f0ea5a
+  &.c3 a:hover
+    color #59cbde
+    
+
+  
+#images
   z-index -10
   position fixed
   top 0
@@ -91,3 +119,28 @@ body
     bottom 0
     left 0
     right 0
+    
+
+#news
+  width 312px
+  margin 40px auto
+  color #eee
+  background #111
+  padding 10px 0
+  h1 
+    font-size 22px
+    font-weight normal
+    text-align center
+  .tweet_list
+    list-style none
+    margin 0
+    padding 0 20px
+    li
+      margin 20px 0
+      a
+        color #2eafd7
+  a.more
+    text-align center
+    font-size 16px
+    display block
+    color #e86995

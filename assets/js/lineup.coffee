@@ -1,15 +1,15 @@
-# We start by setting a global AMFMF namespace to prevent
-# clashing with other js frameworks.
+# We start by creating the Lineup object in the `App` 
+# namespace to prevent clashing with other js frameworks.
 
-window.AMFMF =
+App.Lineup =
   
   #### The init() function
   
   # We then create an initialization function which
-  # caches the band images container element `#backgrounds`.
+  # caches the band images container element `#images`.
   init: ->
     
-    @backgrounds = $ '#backgrounds'
+    @images = $ '#images'
 
     $('.band').each (i, band) =>
  
@@ -62,15 +62,15 @@ window.AMFMF =
   
   # `showBandImage` remove the previous band images
   # and builds a new element to append to the 
-  # band images container (`#backgrounds`).
+  # band images container (`#images`).
   showBandImage: (src) ->
     
-    $('> :not(:last-child)', @backgrounds).each ->          
+    $('> :not(:last-child)', @images).each ->          
       do $(this).remove
     
     $('<div>')
       .css(background: "url(#{src})")      
-      .appendTo(@backgrounds)
+      .appendTo(@images)
 
 
 #### Last but not least
@@ -81,4 +81,4 @@ window.AMFMF =
 # be in place by the time the amfmf script
 # is loaded.
 
-do AMFMF.init
+do App.Lineup.init
