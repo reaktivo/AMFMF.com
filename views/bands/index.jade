@@ -24,7 +24,7 @@ block content
             h1= band.name
             .info
               p= band.text
-              if band.hide_play
+              unless band.hide_play
                 p: a.play(href="/bands/#{bandId}.mp3") Escuchar
       
       
