@@ -24,7 +24,8 @@ block content
             h1= band.name
             .info
               p= band.text
-              p: a.play(href="/bands/#{bandId}.mp3") Escuchar
+              if band.hide_play
+                p: a.play(href="/bands/#{bandId}.mp3") Escuchar
       
       
     #images
