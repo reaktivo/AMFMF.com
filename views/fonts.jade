@@ -1,8 +1,15 @@
 script
   WebFontConfig = {
     google: { families: !{JSON.stringify(fonts)} },
+    listeners: [],
     active: function() {
-      $('.band h1').slabText()
+      console.log('web fonts active');
+      for(var i = 0; i < this.listeners.length; i++) {
+        this.listeners[i]();
+      }
+    },
+    ready: function(callback) {
+      this.listeners.push(callback);
     }
   };
   (function() {

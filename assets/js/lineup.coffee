@@ -5,11 +5,16 @@ App.Lineup =
   
   #### The init() function
   
-  # We then create an initialization function which
-  # caches the band images container element `#images`.
   init: ->
     
-    @images = $ '#images'
+    # We create a page handler to route `/bands/the-band` 
+    # kind of uri to the `showBand` method.
+    page '/lineup/:band', (ctx) =>
+      @showBand ctx.params.band
+    
+    # We wait for `WebFontConfig.ready` to start the page router.
+    WebFontConfig.ready -> 
+      setTimeout(page.start, 200)
 
     $('.band').each (i, band) =>
  
@@ -20,43 +25,56 @@ App.Lineup =
         .slideUp(0)
       
       # then add click event handlers to the band names.
-      $('h1', band).click (e) => @selectBand(e)
- 
- 
-  #### The selectBand() function
-  
-  # `selectBand` is what happens after we click a band name.
-  selectBand: (e) ->
+      $('h1', band).click (e) => 
         
-    # First we find the closest `.band` element based on the
-    # click event's `currentTarget` property.
-    band = $(e.currentTarget).closest('.band')
-    
+        # We find the closest `.band` element based on the
+        # click event's `currentTarget` property.
+        bandEl = $(e.currentTarget).closest('.band')
  
-    # Each band's html element has an id set with a url-safe
-    # id, which is also used to identify a band's image or mp3 file
-    # in the assets directory.  
-    bandId = band.attr 'id'
+        # Each band's html element has an id set with a url-safe
+        # id, which is also used to identify a band's image or mp3 file
+        # in the assets directory.  
+        band = bandEl.attr 'id'
+        
+        # Then we navigate to band page.
+        page("/lineup/#{band}")
+ 
+ 
+  #### The showBand() function
+  
+  showBand: (band) ->
     
-    # We use this value to build the band's image uri.
-    imageSrc = "/bands/#{bandId}.jpg"
+    console.log 'showBand', band
+    
+    # First we find the band's html element.
+    bandEl = $ "##{band}"
     
     # If the clicked band is same as the currently selected band
     # break out of the function.
-    return if @selectedBand is band
-    
+    return if @selectedBand is bandEl
+
     # If not, hide the currently select band's info using the
     # slide effect.
     $('.info', @selectedBand).slideUp()
-    
+
     # We set the selectedBand to be the clicked band
-    @selectedBand = band
-    
+    @selectedBand = bandEl
+
     # and display the new selected band's info.
-    $('.info', @selectedBand).slideDown()
+    $('.info', @selectedBand).slideDown =>
+      $.smoothScroll
+        offset: -20
+        scrollTarget: "##{band}"
+        afterScroll: =>          
     
-    # and then show the band image         
+    # We use the band's id to build their image uri
+    imageSrc = "/bands/#{band}.jpg"
+    
+    # and then show the band image
     @showBandImage imageSrc
+    
+      
+      
   
   ####  The showBandImage() function
   
@@ -65,12 +83,14 @@ App.Lineup =
   # band images container (`#images`).
   showBandImage: (src) ->
     
-    $('> :not(:last-child)', @images).each ->          
+    imagesEl = $ '#images'
+    
+    $('> :not(:last-child)', imagesEl).each ->          
       do $(this).remove
     
     $('<div>')
       .css(background: "url(#{src})")      
-      .appendTo(@images)
+      .appendTo(imagesEl)
 
 
 #### Last but not least

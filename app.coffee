@@ -27,9 +27,9 @@ app.use (req, res, next) ->
   res.locals.request = req
   do next
 
-app.use app.router
 app.use assets()
 app.use express.static join __dirname, "assets"
+app.use app.router
 
 load('locals').into(app)
 load('routes').into(app)
