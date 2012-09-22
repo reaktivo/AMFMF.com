@@ -44,8 +44,6 @@ App.Lineup =
   
   showBand: (band) ->
     
-    console.log 'showBand', band
-    
     # First we find the band's html element.
     bandEl = $ "##{band}"
     
@@ -65,7 +63,6 @@ App.Lineup =
       $.smoothScroll
         offset: -20
         scrollTarget: "##{band}"
-        afterScroll: =>          
     
     # We use the band's id to build their image uri
     imageSrc = "/bands/#{band}.jpg"

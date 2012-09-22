@@ -3,13 +3,16 @@ script
     google: { families: !{JSON.stringify(fonts)} },
     listeners: [],
     active: function() {
-      console.log('web fonts active');
+      this.called_ready = true;
       for(var i = 0; i < this.listeners.length; i++) {
         this.listeners[i]();
       }
     },
     ready: function(callback) {
-      this.listeners.push(callback);
+      if (this.called_ready)
+        callback()
+      else
+        this.listeners.push(callback)
     }
   };
   (function() {
