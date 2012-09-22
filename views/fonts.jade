@@ -9,10 +9,11 @@ script
       }
     },
     ready: function(callback) {
-      if (this.called_ready)
+      if (this.called_ready) {
         callback()
-      else
+      } else {
         this.listeners.push(callback)
+      }
     }
   };
   (function() {
