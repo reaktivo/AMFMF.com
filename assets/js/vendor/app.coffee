@@ -7,3 +7,5 @@ window.App or= {}
 #= require jquery.tweet
 #= require jquery.smooth-scroll
 #= require soundmanager2
+#= require moment
+#= require moment-es
