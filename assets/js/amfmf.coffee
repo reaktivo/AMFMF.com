@@ -4,8 +4,9 @@ App.AMFMF =
 
   init: ->
     
-    WebFontConfig.ready -> 
-      $('.band h1').slabText()
+    unless @isiPhone
+      WebFontConfig.ready -> 
+        $('.band h1').slabText()
     
     $('#menu a').on 'click', (e) => 
       a = $ e.currentTarget 
@@ -26,6 +27,10 @@ App.AMFMF =
      
   showTimeLeft: ->
     document.title += " " + moment(@date, "YYYYMMDD").fromNow()
+ 
+  isiPhone:
+    (navigator.platform.indexOf("iPhone") != -1) or
+    (navigator.platform.indexOf("iPod") != -1)
  
 
 do App.AMFMF.init
