@@ -22,7 +22,7 @@ App.AMFMF =
     return unless section
 
     $.smoothScroll
-      offset: -20
+      offset: -55
       scrollTarget: "##{section}"     
      
   showTimeLeft: ->

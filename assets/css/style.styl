@@ -17,7 +17,38 @@ body
   -moz-background-size cover
   -o-background-size cover
   background-size cover
+  padding-top 40px
+  margin 0
 
+#menu
+  list-style none
+  width 317px
+  margin 0 0 0 -156px
+  left 50%
+  padding 0
+  top 0
+  position fixed
+  z-index 1000
+  
+#menu li
+  background #111
+  display inline-block
+  width 33%
+  text-align center
+
+  a
+    color #fff  
+    font-family Oswald, sans-serif
+    font-size 22px
+    text-decoration none
+    text-transform uppercase
+    line-height 50px
+  &.c1 a:hover
+    color #ed829c
+  &.c2 a:hover
+    color #f0ea5a
+  &.c3 a:hover
+    color #59cbde
 #teaser
   margin -70px auto 0
   overflow hidden
@@ -35,8 +66,9 @@ body
     padding 0 10px
     color #fff
     background #111
+    background rgba(17,17,17,1)
     font-family Oswald, sans-serif
-    margin 20px 0
+    margin 5px 0
     .img
       position absolute
       z-index 0
@@ -78,34 +110,10 @@ body
       &.playing:before
         background-position 0 23px
 
-#menu
-  list-style none
-  width 312px
-  margin 0 auto
-  padding 0
-  
-#menu li
-  background #111
-  display inline-block
-  width 33%
-  text-align center
+@media only screen and (max-device-width: 480px) {
+  #lineup .band { background-color: rgba(17,17,17,0.7) }
+}
 
-  a
-    color #fff  
-    font-family Oswald, sans-serif
-    font-size 22px
-    text-decoration none
-    text-transform uppercase
-    line-height 50px
-  &.c1 a:hover
-    color #ed829c
-  &.c2 a:hover
-    color #f0ea5a
-  &.c3 a:hover
-    color #59cbde
-    
-
-  
 #images
   z-index -10
   position fixed

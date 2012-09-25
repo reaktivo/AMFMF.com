@@ -3,6 +3,8 @@
 
 App.Lineup =
   
+  bandSelector: '.band.selected'
+  
   #### The init() function
   
   init: ->
@@ -29,43 +31,49 @@ App.Lineup =
         
         # We find the closest `.band` element based on the
         # click event's `currentTarget` property.
-        bandEl = $(e.currentTarget).closest('.band')
+        band = $(e.currentTarget).closest('.band')
  
         # Each band's html element has an id set with a url-safe
         # id, which is also used to identify a band's image or mp3 file
         # in the assets directory.  
-        band = bandEl.attr 'id'
+        bandId = band.attr 'id'
         
         # Then we navigate to band page.
-        page("/lineup/#{band}")
+        page("/lineup/#{bandId}")
  
  
   #### The showBand() function
   
-  showBand: (band) ->
+  showBand: (bandId) ->
     
     # First we find the band's html element.
-    bandEl = $ "##{band}"
+    band = $ "##{bandId}"
     
-    # If the clicked band is same as the currently selected band
-    # break out of the function.
-    return if @selectedBand is bandEl
+    # If the clicked band is the same as the currently
+    # selected band break out of the function.
+    return if band.hasClass 'selected'
+    
+    # We set a reference to the currently selected band
+    selected = $(@bandSelector)
+    
+    # And we remove it's selected class
+    selected.removeClass 'selected'
 
-    # If not, hide the currently select band's info using the
+    # We also hide the band's info using the
     # slide effect.
-    $('.info', @selectedBand).slideUp()
+    $('.info', selected).slideUp()
 
     # We set the selectedBand to be the clicked band
-    @selectedBand = bandEl
+    band.addClass 'selected'
 
     # and display the new selected band's info.
-    $('.info', @selectedBand).slideDown =>
+    $('.info', band).slideDown =>
       $.smoothScroll
-        offset: -20
-        scrollTarget: "##{band}"
+        offset: -55
+        scrollTarget: @bandSelector
     
     # We use the band's id to build their image uri
-    imageSrc = "/bands/#{band}.jpg"
+    imageSrc = "/bands/#{bandId}.jpg"
     
     # and then show the band image
     @showBandImage imageSrc
