@@ -23,7 +23,7 @@ and starts the new one.</p>             </td>             <td class="code">     
     <span class="k">else</span>
       <span class="vi">@sound = </span><span class="nx">newSound</span>
       <span class="nx">do</span> <span class="nx">@sound</span><span class="p">.</span><span class="nx">play</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s">&quot;[href=</span><span class="si">#{</span><span class="nx">src</span><span class="si">}</span><span class="s">]&quot;</span><span class="p">).</span><span class="nx">addClass</span> <span class="s">&#39;playing&#39;</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&quot;*[href=\&quot;</span><span class="si">#{</span><span class="nx">src</span><span class="si">}</span><span class="s">\&quot;]&quot;</span><span class="p">).</span><span class="nx">addClass</span> <span class="s">&#39;playing&#39;</span>
 
     <span class="k">return</span> <span class="nx">@sound</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p><code>getSound</code> returns a reference to the
 soundmanager2's sound object or creates
