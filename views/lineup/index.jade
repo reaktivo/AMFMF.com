@@ -23,6 +23,7 @@ block content
           .band(id=bandId, style="color: #{colors[i++]};")
             h1= band.name
             .info
+              img(style="display:none;")
               p= band.text
               unless band.hide_play
                 p: a.play(href="/bands/#{bandId}.mp3") Escuchar
@@ -35,6 +36,5 @@ append scripts
 
   != js('player')
   != js('lineup')
-  != js('news')
   != js('amfmf')
     

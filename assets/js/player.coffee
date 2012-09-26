@@ -1,52 +1,52 @@
-window.Player = 
-    
-  isPlaying: null
-      
+# `App.Player` is responsible for playing
+# and stoping sounds. And managing the visual
+# state of the buttons used to play & pause.
+App.Player = 
+  
   sounds: {}
-    
+
+  # `init` adds click handlers to the bands
+  # play buttons.
   init: ->
         
-    # add click events to .play elements
-    $('.play').click (e) =>  
-        
-      # stop from following link
+    $('.play').click (e) => 
       do e.preventDefault
       
+      # The `playing` css class is added
+      # or removed from the clicked play button. 
       $('.playing').removeClass 'playing'
-        
-      # get sound element
-      sound = $ e.currentTarget
+      btn = $(e.currentTarget)
+      if @playSound(btn.attr('href'))
+        btn.addClass 'playing'
+  
+  # `playSound` stop the currently playing sound
+  # and starts the new one.
+  playSound: (src) ->
+            
+    do @sound?.stop
       
-      # set sound source
-      src = sound.attr 'href'
-      
-      # create new sound
-      unless @sounds[src]
-        @sounds[src] = soundManager.createSound
-          id: src
-          url: src
-      
-      # stop playing sound
-      do @isPlaying?.stop
-      
-      # check if same as playing sound
-      if @isPlaying is @sounds[src]
-        
-        # set playing sound to null
-        @isPlaying = null
-        
-      else
-      
-        # set new playing sound
-        @isPlaying = @sounds[src]
-        
-        # play new sound
-        do @isPlaying.play
-        
-        # add class to button
-        sound.addClass 'playing'
-      
+    newSound = @getSound src
+    if @sound is newSound  
+      @sound = null
+    else
+      @sound = newSound
+      do @sound.play
+      $("*[href=\"#{src}\"]").addClass 'playing'
 
+    return @sound
+
+  # `getSound` returns a reference to the
+  # soundmanager2's sound object or creates
+  # one if none exists.
+  getSound: (src) ->
+    unless @sounds[src]
+      @sounds[src] = soundManager.createSound
+        id: src
+        url: src
+    @sounds[src]
+
+# We also call the global `soundManager.setup` method
+# to initialize `App.Player` when the soundmanager is ready
 soundManager.setup
   url: '/soundmanager/'
-  onready: => do Player.init
+  onready: => do App.Player.init

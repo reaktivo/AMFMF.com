@@ -14,7 +14,9 @@ App.Lineup =
     page '/lineup/:band', (ctx) =>
       @showBand ctx.params.band
     
-    # We wait for `WebFontConfig.ready` to start the page router.
+    # Wait for `WebFontConfig.ready` to start the page router.
+    # This is needed prevent the page from scrolling to the wrong
+    # y position, because of the slabText effect. 
     WebFontConfig.ready -> 
       setTimeout(page.start, 200)
 
@@ -35,11 +37,11 @@ App.Lineup =
  
         # Each band's html element has an id set with a url-safe
         # id, which is also used to identify a band's image or mp3 file
-        # in the assets directory.  
+        # in the assets directory.
         bandId = band.attr 'id'
         
-        # Then we navigate to band page.
-        page("/lineup/#{bandId}")
+        # We use that id to navigate to the band's page.
+        page "/lineup/" + bandId
  
  
   #### The showBand() function
@@ -47,55 +49,68 @@ App.Lineup =
   showBand: (bandId) ->
     
     # First we find the band's html element.
-    band = $ "##{bandId}"
-    
     # If the clicked band is the same as the currently
     # selected band break out of the function.
+    
+    band = $ "#" + bandId
+    
     return if band.hasClass 'selected'
     
     # We set a reference to the currently selected band
+    # and remove it's "unselect" it.
     selected = $(@bandSelector)
     
-    # And we remove it's selected class
     selected.removeClass 'selected'
 
     # We also hide the band's info using the
     # slide effect.
     $('.info', selected).slideUp()
 
-    # We set the selectedBand to be the clicked band
+    # We set the clicked band as selected
+    # and display it's description and image
     band.addClass 'selected'
 
-    # and display the new selected band's info.
     $('.info', band).slideDown =>
       $.smoothScroll
         offset: -55
         scrollTarget: @bandSelector
     
-    # We use the band's id to build their image uri
-    imageSrc = "/bands/#{bandId}.jpg"
-    
-    # and then show the band image
-    @showBandImage imageSrc
-    
-      
-      
+    @showBandImage band
+
   
   ####  The showBandImage() function
   
-  # `showBandImage` remove the previous band images
-  # and builds a new element to append to the 
-  # band images container (`#images`).
-  showBandImage: (src) ->
+  # `showBandImage` will detect if the current device
+  # is an iPhone or not; and display the band's image
+  # in a different format based on that.
+  showBandImage: (band) ->
     
-    imagesEl = $ '#images'
+    # We get the band's id
+    bandId = band.attr('id')
     
-    $('> :not(:last-child)', imagesEl).each ->          
-      do $(this).remove
+    # then use it to build their image uri.
+    src = "/bands/#{bandId}.jpg"
     
-    $('<div>')
-      .css(background: "url(#{src})")      
-      .appendTo(imagesEl)
+    # If the device is an iPhone, we change the image
+    # container underneath the band's title
+    # and set the image width to full.
+    if App.isiPhone
+      $('img', band)
+        .attr({src})
+        .width("100%")
+        .show()
+
+    # If it's not an iPhone, we use the background
+    # image container and remove the last image
+    # the container had and set the background 
+    # url to the band's image.
+    else
+      imagesEl = $ '#images'
+      $('> :not(:last-child)', imagesEl).each ->          
+        do $(this).remove
+      $('<div>')
+        .css(background: "url(#{src})")      
+        .appendTo(imagesEl)
 
 
 #### Last but not least
