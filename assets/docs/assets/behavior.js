@@ -16,7 +16,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         },
         "sourcePath": "/Users/reaktivo/Sites/amfmf.com/app.coffee",
         "projectPath": "app.coffee",
-        "targetPath": "app",
+        "targetPath": "index",
         "firstHeader": {
           "type": "heading",
           "data": {
