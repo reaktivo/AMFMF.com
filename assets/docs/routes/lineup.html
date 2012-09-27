@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><title>routes/lineup</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="routes/lineup"><meta name="groc-project-path" content="routes/lineup.coffee"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">routes/lineup.coffee</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="lineupcoffee">lineup.coffee</h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Every route file is passed the app instance
+by the <code>express-load</code> module.</p></div></div><div class="code"><div class="wrapper"><span class="nv">module.exports = </span><span class="nf">(app) -&gt;</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We set the handler middleware to reuse it
+by the <code>/</code> and <code>/bandName</code> routes.</p>
+
+<p>We create the bandName routes by 
+looping thru each band name and creating a
+GET route.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">handler = </span><span class="nf">(req, res) -&gt;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">locals</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;lineup/index&#39;</span><span class="p">,</span> <span class="nv">title: </span><span class="s">&#39;AMFMF 2012&#39;</span>
+  
+  <span class="nx">app</span><span class="p">.</span><span class="nx">get</span> <span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="nx">handler</span>
+  
+  <span class="k">for</span> <span class="nx">band</span><span class="p">,</span> <span class="nx">data</span> <span class="k">of</span> <span class="nx">app</span><span class="p">.</span><span class="nx">locals</span><span class="p">.</span><span class="nx">bands</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">get</span> <span class="s">&quot;/lineup/</span><span class="si">#{</span><span class="nx">band</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nx">handler</span></div></div></div></div></body></html>

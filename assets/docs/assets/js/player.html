@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="en"><head><title>assets/js/player</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="assets/js/player"><meta name="groc-project-path" content="assets/js/player.coffee"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">assets/js/player.coffee</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><p>Make sure the App namespace already exists.</p></div></div><div class="code"><div class="wrapper"><span class="nb">window</span><span class="p">.</span><span class="nx">App</span> <span class="o">or=</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>App.Player</code> is responsible for playing
+and stoping sounds. And managing the visual
+state of the buttons used to play &amp; pause.</p></div></div><div class="code"><div class="wrapper"><span class="nv">App.Player = </span>
+  
+  <span class="nv">sounds: </span><span class="p">{}</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>init</code> adds click handlers to the bands
+play buttons.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">init: </span><span class="o">-&gt;</span>
+        
+    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.play&#39;</span><span class="p">).</span><span class="nx">click</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> 
+      <span class="nx">do</span> <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span>
+      </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>The <code>playing</code> css class is added
+or removed from the clicked play button. </p></div></div><div class="code"><div class="wrapper">      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.playing&#39;</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s">&#39;playing&#39;</span>
+      <span class="nv">btn = </span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">@playSound</span><span class="p">(</span><span class="nx">btn</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">))</span>
+        <span class="nx">btn</span><span class="p">.</span><span class="nx">addClass</span> <span class="s">&#39;playing&#39;</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>playSound</code> stop the currently playing sound
+and start the new one, also return the sound instance</p></div></div><div class="code"><div class="wrapper">  <span class="nv">playSound: </span><span class="nf">(src) -&gt;</span>
+            
+    <span class="nx">do</span> <span class="nx">@sound</span><span class="o">?</span><span class="p">.</span><span class="nx">stop</span>
+      
+    <span class="nv">newSound = </span><span class="nx">@getSound</span> <span class="nx">src</span>
+    <span class="k">if</span> <span class="nx">@sound</span> <span class="o">is</span> <span class="nx">newSound</span>  
+      <span class="vi">@sound = </span><span class="kc">null</span>
+    <span class="k">else</span>
+      <span class="nx">do</span> <span class="nx">newSound</span><span class="p">.</span><span class="nx">play</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&quot;*[href=\&quot;</span><span class="si">#{</span><span class="nx">src</span><span class="si">}</span><span class="s">\&quot;]&quot;</span><span class="p">).</span><span class="nx">addClass</span> <span class="s">&#39;playing&#39;</span>
+      <span class="vi">@sound = </span><span class="nx">newSound</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>getSound</code> returns a reference to the
+soundmanager2's sound object or creates
+one if none exists.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">getSound: </span><span class="nf">(src) -&gt;</span>
+    <span class="nx">unless</span> <span class="nx">@sounds</span><span class="p">[</span><span class="nx">src</span><span class="p">]</span>
+      <span class="nx">@sounds</span><span class="p">[</span><span class="nx">src</span><span class="p">]</span> <span class="o">=</span> <span class="nx">soundManager</span><span class="p">.</span><span class="nx">createSound</span>
+        <span class="nv">id: </span><span class="nx">src</span>
+        <span class="nv">url: </span><span class="nx">src</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We also call the global <code>soundManager.setup</code> method
+to initialize <code>App.Player</code> when the soundmanager is ready</p></div></div><div class="code"><div class="wrapper"><span class="nx">soundManager</span><span class="p">.</span><span class="nx">setup</span>
+  <span class="nv">url: </span><span class="s">&#39;/soundmanager/&#39;</span>
+  <span class="nv">onready: </span><span class="o">=&gt;</span> <span class="nx">do</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">init</span></div></div></div></div></body></html>

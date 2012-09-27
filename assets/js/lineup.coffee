@@ -1,3 +1,6 @@
+# Make sure the App namespace already exists.
+window.App or= {}
+
 # We start by creating the Lineup object in the `App` 
 # namespace to prevent clashing with other js frameworks.
 

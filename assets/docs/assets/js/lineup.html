@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><title>assets/js/lineup</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="assets/js/lineup"><meta name="groc-project-path" content="assets/js/lineup.coffee"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">assets/js/lineup.coffee</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><p>Make sure the App namespace already exists.</p></div></div><div class="code"><div class="wrapper"><span class="nb">window</span><span class="p">.</span><span class="nx">App</span> <span class="o">or=</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We start by creating the Lineup object in the <code>App</code> 
+namespace to prevent clashing with other js frameworks.</p></div></div><div class="code"><div class="wrapper"><span class="nv">App.Lineup =</span>
+  
+  <span class="nv">bandSelector: </span><span class="s">&#39;.band.selected&#39;</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="the-init-function">The init() function</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  
+  <span class="nv">init: </span><span class="o">-&gt;</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We create a page handler to route <code>/bands/the-band</code> 
+kind of uri to the <code>showBand</code> method.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">page</span> <span class="s">&#39;/lineup/:band&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">@showBand</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">band</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Wait for <code>WebFontConfig.ready</code> to start the page router.
+This is needed prevent the page from scrolling to the wrong
+y position, because of the slabText effect. </p></div></div><div class="code"><div class="wrapper">    <span class="nx">WebFontConfig</span><span class="p">.</span><span class="nx">ready</span> <span class="o">-&gt;</span> 
+      <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">page</span><span class="p">.</span><span class="nx">start</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.band&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">band</span><span class="p">)</span> <span class="o">=&gt;</span>
+ </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Remove default css styles and hide the band's <code>.info</code> element
+to prevent flickering when js is loaded</p></div></div><div class="code"><div class="wrapper">      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.info&#39;</span><span class="p">,</span> <span class="nx">band</span><span class="p">)</span> 
+        <span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="nv">height: </span><span class="s">&#39;auto&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">slideUp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+      </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>then add click event handlers to the band names.</p></div></div><div class="code"><div class="wrapper">      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;h1&#39;</span><span class="p">,</span> <span class="nx">band</span><span class="p">).</span><span class="nx">click</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> 
+        </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We find the closest <code>.band</code> element based on the
+click event's <code>currentTarget</code> property.</p></div></div><div class="code"><div class="wrapper">        <span class="nv">band = </span><span class="nx">$</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s">&#39;.band&#39;</span><span class="p">)</span>
+ </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Each band's html element has an id set with a url-safe
+id, which is also used to identify a band's image or mp3 file
+in the assets directory.</p></div></div><div class="code"><div class="wrapper">        <span class="nv">bandId = </span><span class="nx">band</span><span class="p">.</span><span class="nx">attr</span> <span class="s">&#39;id&#39;</span>
+        </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We use that id to navigate to the band's page.</p></div></div><div class="code"><div class="wrapper">        <span class="nx">page</span> <span class="s">&quot;/lineup/&quot;</span> <span class="o">+</span> <span class="nx">bandId</span>
+ 
+ </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="the-showband-function">The showBand() function</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  
+  <span class="nv">showBand: </span><span class="nf">(bandId) -&gt;</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>First we find the band's html element.
+If the clicked band is the same as the currently
+selected band break out of the function.</p></div></div><div class="code"><div class="wrapper">    
+    <span class="nv">band = </span><span class="nx">$</span> <span class="s">&quot;</span><span class="err">#</span><span class="s">&quot;</span> <span class="o">+</span> <span class="nx">bandId</span>
+    
+    <span class="k">return</span> <span class="k">if</span> <span class="nx">band</span><span class="p">.</span><span class="nx">hasClass</span> <span class="s">&#39;selected&#39;</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We set a reference to the currently selected band
+and remove it's "unselect" it.</p></div></div><div class="code"><div class="wrapper">    <span class="nv">selected = </span><span class="nx">$</span><span class="p">(</span><span class="nx">@bandSelector</span><span class="p">)</span>
+    
+    <span class="nx">selected</span><span class="p">.</span><span class="nx">removeClass</span> <span class="s">&#39;selected&#39;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We also hide the band's info using the
+slide effect.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.info&#39;</span><span class="p">,</span> <span class="nx">selected</span><span class="p">).</span><span class="nx">slideUp</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We set the clicked band as selected
+and display it's description and image</p></div></div><div class="code"><div class="wrapper">    <span class="nx">band</span><span class="p">.</span><span class="nx">addClass</span> <span class="s">&#39;selected&#39;</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.info&#39;</span><span class="p">,</span> <span class="nx">band</span><span class="p">).</span><span class="nx">slideDown</span> <span class="o">=&gt;</span>
+      <span class="nx">$</span><span class="p">.</span><span class="nx">smoothScroll</span>
+        <span class="nv">offset: </span><span class="o">-</span><span class="mi">55</span>
+        <span class="nv">scrollTarget: </span><span class="nx">@bandSelector</span>
+    
+    <span class="nx">@showBandImage</span> <span class="nx">band</span>
+
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="the-showbandimage-function">The showBandImage() function</h3></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>showBandImage</code> will detect if the current device
+is an iPhone or not; and display the band's image
+in a different format based on that.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">showBandImage: </span><span class="nf">(band) -&gt;</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We get the band's id</p></div></div><div class="code"><div class="wrapper">    <span class="nv">bandId = </span><span class="nx">band</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>then use it to build their image uri.</p></div></div><div class="code"><div class="wrapper">    <span class="nv">src = </span><span class="s">&quot;/bands/</span><span class="si">#{</span><span class="nx">bandId</span><span class="si">}</span><span class="s">.jpg&quot;</span>
+    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>If the device is an iPhone, we change the image
+container underneath the band's title
+and set the image width to full.</p></div></div><div class="code"><div class="wrapper">    <span class="k">if</span> <span class="nx">App</span><span class="p">.</span><span class="nx">isiPhone</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;img&#39;</span><span class="p">,</span> <span class="nx">band</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">({</span><span class="nx">src</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">width</span><span class="p">(</span><span class="s">&quot;100%&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">show</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>If it's not an iPhone, we use the background
+image container and remove the last image
+the container had and set the background 
+url to the band's image.</p></div></div><div class="code"><div class="wrapper">    <span class="k">else</span>
+      <span class="nv">imagesEl = </span><span class="nx">$</span> <span class="s">&#39;#images&#39;</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;&gt; :not(:last-child)&#39;</span><span class="p">,</span> <span class="nx">imagesEl</span><span class="p">).</span><span class="nx">each</span> <span class="o">-&gt;</span>          
+        <span class="nx">do</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">remove</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s">&#39;&lt;div&gt;&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="nv">background: </span><span class="s">&quot;url(</span><span class="si">#{</span><span class="nx">src</span><span class="si">}</span><span class="s">)&quot;</span><span class="p">)</span>      
+        <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">imagesEl</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="last-but-not-least">Last but not least</h3></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We init the AMFMF singleton.
+Calling this on domready is not required
+because all elements selected should already
+be in place by the time the amfmf script
+is loaded.</p></div></div><div class="code"><div class="wrapper"><span class="nx">do</span> <span class="nx">App</span><span class="p">.</span><span class="nx">Lineup</span><span class="p">.</span><span class="nx">init</span></div></div></div></div></body></html>

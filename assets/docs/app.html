@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><title>app</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="app"><meta name="groc-project-path" content="app.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">app.coffee</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="appcoffee">app.coffee</h1>
+
+<p><code>app.coffee</code> is the central part of the AMFMF app.</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We require our <code>express</code> which handles requests,
+<code>connect-assets</code> which helps with handling my stylus
+and coffeescript files and we also require 'express-load'
+a tiny, but cool module, that handles loading config
+files (using <code>js-yaml</code>) and routes.</p></div></div><div class="code"><div class="wrapper"><span class="nv">express = </span><span class="nx">require</span> <span class="s">&#39;express&#39;</span>
+<span class="nv">assets = </span><span class="nx">require</span> <span class="s">&#39;connect-assets&#39;</span>
+<span class="nv">load = </span><span class="nx">require</span> <span class="s">&#39;express-load&#39;</span>
+<span class="nx">require</span> <span class="s">&#39;js-yaml&#39;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We also extract the required functions from the 
+<code>underscore</code> lib, so we don't have to use the 
+underscore prefix and from node's <code>path</code> module. </p></div></div><div class="code"><div class="wrapper"><span class="p">{</span><span class="nx">extend</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;underscore&#39;</span>
+<span class="p">{</span><span class="nx">join</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;path&#39;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Initialize the express app, and make it the
+module's export.</p></div></div><div class="code"><div class="wrapper"><span class="nv">module.exports = app = </span><span class="nx">express</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We also do this tiny hack, which tries to load
+<code>./env</code> from the current directory. I use the 
+env file to set local environment variables, 
+specially when working with databases and cookies.
+Make sure we don't add the env file to the git repository.</p></div></div><div class="code"><div class="wrapper"><span class="k">try</span> <span class="nx">extend</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">,</span> <span class="nx">require</span> <span class="s">&#39;./env&#39;</span> <span class="k">catch</span> <span class="nx">err</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We start by setting the root path to <code>__dirname</code>,
+this allows us to reference the app's main dir
+from other scripts, without any hacks.</p>
+
+<p>We extract the port number from the environment
+variables (at least on Heroku) or we use 3000.</p>
+
+<p>We set the views directory and engine and also
+a default title.</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;root&#39;</span><span class="p">,</span> <span class="nx">__dirname</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;port&#39;</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">or</span> <span class="mi">3000</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;views&#39;</span><span class="p">,</span> <span class="nx">join</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s">&quot;views&quot;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;view engine&#39;</span><span class="p">,</span> <span class="s">&#39;jade&#39;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&quot;&quot;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h1 id="middleware">Middleware</h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We load our basic express middleware,</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">favicon</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s">&#39;dev&#39;</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>and create a middleware function
+to pass the request object as a local
+to our views, which I think is kinda neat.</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nf">(req, res, next) -&gt;</span>
+  <span class="nv">res.locals.request = </span><span class="nx">req</span>
+  <span class="nx">do</span> <span class="nx">next</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We use our <code>connect-assets</code> middleware
+we required above without passing any arguments
+so it uses it's defaults.</p>
+
+<p>I like setting the static directory to the same
+as the <code>connect-assets</code> middleware, <code>./assets</code>
+which is it's default.</p>
+
+<p>Then add the router. </p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">assets</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">static</span> <span class="nx">join</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s">&quot;assets&quot;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">app</span><span class="p">.</span><span class="nx">router</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We use the express-load module to conveniently 
+add the yml files inside the locals directory 
+into the app locals and load our route files.</p></div></div><div class="code"><div class="wrapper"><span class="nx">load</span><span class="p">(</span><span class="s">&#39;locals&#39;</span><span class="p">).</span><span class="nx">into</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+<span class="nx">load</span><span class="p">(</span><span class="s">&#39;routes&#39;</span><span class="p">).</span><span class="nx">into</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Add the error handler when we're on the 
+development environment.</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">configure</span> <span class="s">&#39;development&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">errorHandler</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Then we listen.</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span> <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;port&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;Express server listening on port </span><span class="si">#{</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;port&#39;</span><span class="p">)</span><span class="si">}</span><span class="s">&quot;</span></div></div></div></div></body></html>

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server",
-    "docs": "docco -o assets/docs assets/js/*.coffee"
+    "docs": "groc -o assets/docs --index assets/js/app.coffee assets/js/* routes/* ./*.coffee"
   },
   "engines": {
     "node": "0.8.x",

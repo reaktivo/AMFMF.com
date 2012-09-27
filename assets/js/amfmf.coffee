@@ -1,7 +1,12 @@
+## amfmf.coffee
+
+# Make sure the App namespace already exists.
+window.App or= {}
+
 # AMFMF.coffee is a global singleton object used for
 # miscellaneous purposes.
 
-App.AMFMF = 
+App.AMFMF =
   
   # We set some constants:
   #
@@ -9,6 +14,8 @@ App.AMFMF =
   # - And the twitter user to grab news from
   date: "20121117"
   username: 'infoamf'
+  
+  #### init
   
   # And then we start calling all our setup
   # functions.

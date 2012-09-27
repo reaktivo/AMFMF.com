@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><title>assets/js/amfmf</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="assets/js/amfmf"><meta name="groc-project-path" content="assets/js/amfmf.coffee"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">assets/js/amfmf.coffee</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="amfmfcoffee">amfmf.coffee</h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Make sure the App namespace already exists.</p></div></div><div class="code"><div class="wrapper"><span class="nb">window</span><span class="p">.</span><span class="nx">App</span> <span class="o">or=</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>AMFMF.coffee is a global singleton object used for
+miscellaneous purposes.</p></div></div><div class="code"><div class="wrapper"><span class="nv">App.AMFMF =</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We set some constants:</p>
+
+<ul>
+<li>The date of the event</li>
+<li>And the twitter user to grab news from</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">date: </span><span class="s">&quot;20121117&quot;</span>
+  <span class="nv">username: </span><span class="s">&#39;infoamf&#39;</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="init">init</h3></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>And then we start calling all our setup
+functions.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">init: </span><span class="o">-&gt;</span>
+    <span class="nx">do</span> <span class="nx">@slabText</span>
+    <span class="nx">do</span> <span class="nx">@setupMenu</span>
+    <span class="nx">do</span> <span class="nx">@showTimeLeft</span>
+    <span class="nx">do</span> <span class="nx">@loadNews</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="setupmenu">setupMenu</h3></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>setupMenu</code> intercepts click events 
+to do the smooth scroll effect.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">setupMenu: </span><span class="o">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#menu a&#39;</span><span class="p">).</span><span class="kc">on</span> <span class="s">&#39;click&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> 
+      <span class="nv">a = </span><span class="nx">$</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span> 
+      <span class="nv">section = </span><span class="nx">a</span><span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="s">&#39;section&#39;</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nx">section</span>
+        <span class="nx">@showSection</span> <span class="nx">section</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="slabtext">slabText</h3></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Because slabText takes too much space, we
+only apply the effect when the user is
+browsing from a normal size non-iOS device.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">slabText: </span><span class="o">-&gt;</span>
+    <span class="nx">unless</span> <span class="nx">App</span><span class="p">.</span><span class="nx">isiPhone</span>
+      <span class="nx">WebFontConfig</span><span class="p">.</span><span class="nx">ready</span> <span class="o">-&gt;</span> 
+        <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.band h1&#39;</span><span class="p">).</span><span class="nx">slabText</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="showsection">showSection</h3></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>showSection</code> is used to smoothly scroll into a 
+page section.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">showSection: </span><span class="nf">(section) -&gt;</span>
+    <span class="k">return</span> <span class="nx">unless</span> <span class="nx">section</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">smoothScroll</span>
+      <span class="nv">offset: </span><span class="o">-</span><span class="mi">55</span>
+      <span class="nv">scrollTarget: </span><span class="s">&quot;</span><span class="err">#</span><span class="s">&quot;</span> <span class="o">+</span> <span class="nx">section</span>     
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="showtimeleft">showTimeLeft</h3></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>showTimeLeft</code> takes care of adding the time til' the event
+date in the browser's title.     </p></div></div><div class="code"><div class="wrapper">  <span class="nv">showTimeLeft: </span><span class="o">-&gt;</span>
+    <span class="nv">fromNow = </span><span class="nx">moment</span><span class="p">(</span><span class="nx">@date</span><span class="p">,</span> <span class="s">&quot;YYYYMMDD&quot;</span><span class="p">).</span><span class="nx">fromNow</span><span class="p">()</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">+=</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="nx">fromNow</span>
+  
+  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="loadnews">loadNews</h3></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>loadNews</code> fills the #news with the twitter feed.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">loadNews: </span><span class="o">-&gt;</span>
+    <span class="vi">@news = </span><span class="nx">$</span> <span class="s">&#39;#news .container&#39;</span>
+    <span class="nx">@news</span><span class="p">.</span><span class="nx">tweet</span> <span class="p">{</span><span class="nx">@username</span><span class="p">}</span>
+ </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="appisiphone">App.isiPhone</h3></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>App.isiPhone</code> is set to true when a small iOS device
+(iPhone or iPod touch) is used to browse the site.</p></div></div><div class="code"><div class="wrapper"><span class="nv">App.isiPhone =</span>
+  <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&quot;iPhone&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">or</span>
+  <span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&quot;iPod&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="appamfmfinit">App.AMFMF.init</h3></div></div><div class="code"><div class="wrapper"> </div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We don't need to wait for <code>domready</code> to 
+initialize AMFMF.</p></div></div><div class="code"><div class="wrapper"><span class="nx">do</span> <span class="nx">App</span><span class="p">.</span><span class="nx">AMFMF</span><span class="p">.</span><span class="nx">init</span></div></div></div></div></body></html>

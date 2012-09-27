@@ -1,3 +1,6 @@
+# Make sure the App namespace already exists.
+window.App or= {}
+
 # `App.Player` is responsible for playing
 # and stoping sounds. And managing the visual
 # state of the buttons used to play & pause.
@@ -20,7 +23,7 @@ App.Player =
         btn.addClass 'playing'
   
   # `playSound` stop the currently playing sound
-  # and starts the new one.
+  # and start the new one, also return the sound instance
   playSound: (src) ->
             
     do @sound?.stop
@@ -29,11 +32,9 @@ App.Player =
     if @sound is newSound  
       @sound = null
     else
-      @sound = newSound
-      do @sound.play
+      do newSound.play
       $("*[href=\"#{src}\"]").addClass 'playing'
-
-    return @sound
+      @sound = newSound
 
   # `getSound` returns a reference to the
   # soundmanager2's sound object or creates
@@ -43,7 +44,6 @@ App.Player =
       @sounds[src] = soundManager.createSound
         id: src
         url: src
-    @sounds[src]
 
 # We also call the global `soundManager.setup` method
 # to initialize `App.Player` when the soundmanager is ready
