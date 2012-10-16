@@ -17,30 +17,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/reaktivo/Sites/amfmf.com/app.coffee",
         "projectPath": "app.coffee",
         "targetPath": "index",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "app.coffee",
-            "slug": "appcoffee",
-            "isFileHeader": true
-          },
-          "depth": 1
-        },
-        "title": "app.coffee"
+        "title": "index"
       },
       "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "Middleware",
-            "slug": "middleware"
-          },
-          "depth": 1
-        }
-      ]
+      "outline": []
     }, {
       "type": "folder",
       "data": {
@@ -69,153 +49,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "sourcePath": "/Users/reaktivo/Sites/amfmf.com/assets/js/amfmf.coffee",
                 "projectPath": "assets/js/amfmf.coffee",
                 "targetPath": "assets/js/amfmf",
-                "firstHeader": {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "amfmf.coffee",
-                    "slug": "amfmfcoffee",
-                    "isFileHeader": true
-                  },
-                  "depth": 1,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "init",
-                        "slug": "init"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "setupMenu",
-                        "slug": "setupmenu"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "slabText",
-                        "slug": "slabtext"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "showSection",
-                        "slug": "showsection"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "showTimeLeft",
-                        "slug": "showtimeleft"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "loadNews",
-                        "slug": "loadnews"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "App.isiPhone",
-                        "slug": "appisiphone"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "App.AMFMF.init",
-                        "slug": "appamfmfinit"
-                      },
-                      "depth": 3
-                    }
-                  ]
-                },
-                "title": "amfmf.coffee"
+                "title": "amfmf"
               },
               "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "init",
-                    "slug": "init"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "setupMenu",
-                    "slug": "setupmenu"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "slabText",
-                    "slug": "slabtext"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "showSection",
-                    "slug": "showsection"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "showTimeLeft",
-                    "slug": "showtimeleft"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "loadNews",
-                    "slug": "loadnews"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "App.isiPhone",
-                    "slug": "appisiphone"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "App.AMFMF.init",
-                    "slug": "appamfmfinit"
-                  },
-                  "depth": 3
-                }
-              ]
+              "outline": []
             }, {
               "type": "file",
               "data": {
@@ -231,41 +68,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "lineup"
               },
               "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "The init() function",
-                    "slug": "the-init-function"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "The showBand() function",
-                    "slug": "the-showband-function"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "The showBandImage() function",
-                    "slug": "the-showbandimage-function"
-                  },
-                  "depth": 3
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Last but not least",
-                    "slug": "last-but-not-least"
-                  },
-                  "depth": 3
-                }
-              ]
+              "outline": []
             }, {
               "type": "file",
               "data": {
@@ -306,17 +109,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/reaktivo/Sites/amfmf.com/routes/lineup.coffee",
             "projectPath": "routes/lineup.coffee",
             "targetPath": "routes/lineup",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "lineup.coffee",
-                "slug": "lineupcoffee",
-                "isFileHeader": true
-              },
-              "depth": 1
-            },
-            "title": "lineup.coffee"
+            "title": "lineup"
           },
           "depth": 2,
           "outline": []

@@ -1,6 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="app.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">app.coffee</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="appcoffee">app.coffee</h1>
-
-<p><code>app.coffee</code> is the central part of the AMFMF app.</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We require our <code>express</code> which handles requests,
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="app.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">app.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="c1">## app.coffee </span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p><code>app.coffee</code> is the central part of the AMFMF app.</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We require our <code>express</code> which handles requests,
 <code>connect-assets</code> which helps with handling my stylus
 and coffeescript files and we also require 'express-load'
 a tiny, but cool module, that handles loading config
@@ -17,17 +15,15 @@ env file to set local environment variables,
 specially when working with databases and cookies.
 Make sure we don't add the env file to the git repository.</p></div></div><div class="code"><div class="wrapper"><span class="k">try</span> <span class="nx">extend</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">,</span> <span class="nx">require</span> <span class="s">&#39;./env&#39;</span> <span class="k">catch</span> <span class="nx">err</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We start by setting the root path to <code>__dirname</code>,
 this allows us to reference the app's main dir
-from other scripts, without any hacks.</p>
-
-<p>We extract the port number from the environment
-variables (at least on Heroku) or we use 3000.</p>
-
-<p>We set the views directory and engine and also
+from other scripts, without any hacks.</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We extract the port number from the environment
+variables (at least on Heroku) or we use 3000.</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We set the views directory and engine and also
 a default title.</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;root&#39;</span><span class="p">,</span> <span class="nx">__dirname</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;port&#39;</span><span class="p">,</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">or</span> <span class="mi">3000</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;views&#39;</span><span class="p">,</span> <span class="nx">join</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s">&quot;views&quot;</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;view engine&#39;</span><span class="p">,</span> <span class="s">&#39;jade&#39;</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&quot;&quot;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h1 id="middleware">Middleware</h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We load our basic express middleware,</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">favicon</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span> <span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&quot;&quot;</span>
+
+<span class="c1">## Middleware</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We load our basic express middleware,</p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">favicon</span><span class="p">()</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s">&#39;dev&#39;</span><span class="p">)</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">()</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>and create a middleware function
@@ -36,13 +32,9 @@ to our views, which I think is kinda neat.</p></div></div><div class="code"><div
   <span class="nv">res.locals.request = </span><span class="nx">req</span>
   <span class="nx">do</span> <span class="nx">next</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We use our <code>connect-assets</code> middleware
 we required above without passing any arguments
-so it uses it's defaults.</p>
-
-<p>I like setting the static directory to the same
+so it uses it's defaults.</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>I like setting the static directory to the same
 as the <code>connect-assets</code> middleware, <code>./assets</code>
-which is it's default.</p>
-
-<p>Then add the router. </p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">assets</span><span class="p">()</span>
+which is it's default.</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Then add the router. </p></div></div><div class="code"><div class="wrapper"><span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">assets</span><span class="p">()</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">express</span><span class="p">.</span><span class="nx">static</span> <span class="nx">join</span> <span class="nx">__dirname</span><span class="p">,</span> <span class="s">&quot;assets&quot;</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span> <span class="nx">app</span><span class="p">.</span><span class="nx">router</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>We use the express-load module to conveniently 
 add the yml files inside the locals directory 
