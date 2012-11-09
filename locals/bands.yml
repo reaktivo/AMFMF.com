@@ -13,7 +13,11 @@ batwings:
   name: Batwings
   text: |
     Demasiado tiempo en el desierto puede volver loco a cualquiera. Batwings tradujo su tediosa experiencia en una cacofonía de post-punk experimental. Originarios de San Diego, El Centro y Mexicali, este grupo ha estado repartiendo su ruido fronterizo por más de 5 años. Listos para sacar su primer álbum en más de 2 años, Batwings nos darán muestra del siguiente nivel a donde han llevado su sonido.
-    
+
+beaters:
+  name: Beaters
+  text: Beaters es una banda de punk-noir-mutante, que nace en las tierras fronterizas de california. Beaters creció en un culto, estuvo en la cárcel, en el ejercito, tocó en The Sess y Ale Mania. Hoy Beaters se enfrenta con desconfianza, terror y paranoia a un mundo con estelas químicas en el cielo y a la versión empaquetada de surf-nostalgia que vende la urban outifitters.
+
 belafonte:
   name: Belafonte
   text: |
@@ -69,7 +73,14 @@ helado_negro:
   name: Helado Negro
   text: |
     Hijo de padres ecuatorianos, Roberto Carlos Lange, mejor conocido como Helado Negro, nace en el estado de Florida en Estados Unidos. Músico y productor de varios proyectos como ROM y Epstein; su sonido se caracteriza con tintes de su influencia latinoamericana y la experimentación de kraut electrónico con ritmos en down-tempo. Su arduo trabajo se ve reflejado en grandes pasos a través de su carrera. Ahora, Lange radica en Nueva York y desde su estudio personal en Brooklyn llega con su más reciente tesoro titulado Island Universe Story One y sigue sumando a su sorprendente y talentosa carrera en este 2012, Lange, junto a Julianna Barwick, nos entrega su nuevo proyecto musical llamado Ombre.
-    
+
+holloys:
+  name: Holloys
+  text: |
+    Holloys es un quinteto de LA formado por dos baterías, dos bajos, trompeta, guitarra y sintetizador. ¡Una formación infalible!
+    El grupo se ha hecho un nombre gracias un directo incontestable que los llevó a tocar el año pasado en el festival All Tomorrow's Parties en Minehead, UK, cuando aún no tenían ningún disco en la calle.
+    La música de Holloys es una mezcla polirrítmica de trance, dance, Afropop, neo-prog, electrónica, punk-funk y melodías pop que te llevan de Liquid Liquid a Dengue Fever en un par de compases.
+
 inkjet:
   name: Inkjet
   text: |
@@ -89,7 +100,12 @@ le_ra:
   name: Le Ra
   text: |
     Le Ra es una banda indiepop formada en San Diego. Iniciaron su colaboración musical con el grupo Under The Influence Of Us en el 2007. Su sonido ha progresado con influencias desde el brit-pop, indie pop, rock en español y jazz. El proyecto ha tenido varias salidas de su música que incluyen los EPs Moving en 2011 y Big Sky en 2012. Actualmente, Le Ra consiste de cuatro miembros: Mónica Mendoza (voz, guitarra, piano), David Reyes (voz y bajo), Luis Hernández (batería) y Luis López (percusión).
-    
+   
+living_eyes:
+  name: Living Eyes
+  text: |
+    Así lee su biografía en Deathwish inc. Cuatro losers de Oakland  que les va bien después de múltiples intentos en la fosa escéptica que es hoy la escena punk/hardcore de los Estados Unidos. Miembros de Ceremony, Look Back and Laugh, Punch, Talk is Poison, Skin Like Iron, Loma Prieta, Rely, Dead and Gone, California Love, etc. Ligados al hardcore primitivo de Norte América y al protopunk de UK.  
+   
 lo_que_nunca_fue:
   name: Lo que nunca fue
   text: |
@@ -159,6 +175,26 @@ santos_balcones_durango:
   text: |
     Agrupación musical fronteriza de bajo perfil, pero perteneciente a una corriente autóctona que converge distintas epocas y sonoridades, tan variadas como el carácter multicultural de la región. Santos Balcones Durango es el reflejo de un contexto en crisis, de un momento catártico; es una rúbrica al catecismo que esta sociedad imparte a mendigos, prostitutas y decadentes.
 
+the_bixby_knolls:
+  name: The Bixby Knolls
+  text: |
+    El sonido The Bixby Knolls’  muestra la profunda influencia que tienen en sus miembros discos clásicos, contrastando de gran manera con la plaga de American-Apparel bohemia, The Knolls comparten una visión e identidad comparable a una band de músicos hermanos. 
+
+tiger_high:
+  name: Tiger High
+  text: |
+    Tiger High es un grupo de músicos, que emergen de la meca musical de Memphis Tennessee. Su sonido va de un lo-fi psicodélico a un  soul garaje que pueden encontrar su material en Trashy Creatures Records y en la californiana Burger Records. 
+
+tron:
+  name: Tron
+  text: |
+    Formado en Mexicali, Bc, en el verano del 2009 TRON a tenido gran alcance en la escena local y nacional. Tron a participando en la mayor parte del país llevando acabo 2 tours nacionales de manera DIY, Internacionalmente TRON a participado en el legendario venue The Smelle localizado en  Los Angeles, CA, casa y exportadora de indie rock experimental hacia todo el mundo.Actualmente TRON se encuentra en una etapa como solista adoptando y llevando a cabo el género Experimental Noise Art Punk. 
+
+upsilon_acrux:
+  name: Upsilon Acrux
+  text: |
+    Upsilon Acrux  es un quintento instrumental que reside en Los Ángeles, aunque originarios de San Diego. Aunque su música no es fácil de describir en los intentos de hacerlo, se le etiquetado como esóterica, brutal, matématica, atlética y ruidosa.
+    
 tropical_popsicle:
   name: Tropical Popsicle
   text: |
