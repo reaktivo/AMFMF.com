@@ -1,6 +1,8 @@
 ### All My Friends Music Festival
 ### AMFMF.com
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/reaktivo/AMFMF.com.svg)](https://greenkeeper.io/)
+
 This is the source code for the AMF Music Festival website. You can also checkout `groc`'s [generated documentation](http://amfmf.com/docs).
 
 ### Getting Started
